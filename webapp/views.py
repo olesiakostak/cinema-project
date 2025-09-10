@@ -5,14 +5,14 @@ from app.catalog.models import Genre, Film
 
 
 class GenreListView(ListView):
-    template_name = 'webapp/genre_list.html'
+    template_name = 'webapp/genre/genre_list.html'
     context_object_name = 'genres'
 
     def get_queryset(self):
         return unit_of_work.genres.get_all()
 
 class GenreDetailView(DetailView):
-    template_name = 'webapp/genre_detail.html'
+    template_name = 'webapp/genre/genre_detail.html'
     context_object_name = 'genre'
 
     def get_queryset(self):
@@ -21,18 +21,18 @@ class GenreDetailView(DetailView):
 class GenreCreateView(CreateView):
     model = Genre
     fields = ['name']
-    template_name = 'webapp/genre_form.html'
+    template_name = 'webapp/genre/genre_form.html'
     success_url = reverse_lazy('webapp:genre-list')
 
 class GenreUpdateView(UpdateView):
     model = Genre
     fields = ['name']
-    template_name = 'webapp/genre_form.html'
+    template_name = 'webapp/genre/genre_form.html'
     success_url = reverse_lazy('webapp:genre-list')
 
 class GenreDeleteView(DeleteView):
     model = Genre
-    template_name = 'webapp/genre_confirm_delete.html'
+    template_name = 'webapp/genre/genre_confirm_delete.html'
     success_url = reverse_lazy('webapp:genre-list')
 
 
