@@ -1,0 +1,11 @@
+<h1>Film detail</h1>
+<h2>{{ film.title  }}</h2>
+
+<p><strong>Duration:</strong> {{ film.duration }} minutes</p>
+<p><strong>Rating:</strong> {{ film.rating }}</p>
+<p><strong>Release Date:</strong> {{ film.release_date }}</p>
+<p><strong>Description:</strong></p>
+<p>{{ film.description }}</p>
+
+<hr>
+<a href="{% url 'webapp:film-list' %}">Return to the list</a>

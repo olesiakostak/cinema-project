@@ -1,0 +1,11 @@
+<h1>List of all films</h1>
+
+{% if films %}
+    <ul>
+        {% for film in films %}
+            <li><a href="{% url 'webapp:film-detail' film.id %}">{{ film.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>There is no film.</p>
+{% endif %}
