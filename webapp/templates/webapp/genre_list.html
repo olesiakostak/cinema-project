@@ -1,0 +1,11 @@
+<h1>Список усіх жанрів</h1>
+
+{% if genres %}
+    <ul>
+        {% for genre in genres %}
+            <li><a href="{% url 'webapp:genre-detail' genre.id %}">{{ genre.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Жодного жанру ще не додано.</p>
+{% endif %}

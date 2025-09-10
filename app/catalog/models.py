@@ -22,7 +22,7 @@ class Film(models.Model):
 
     def __str__(self):
         return self.title
-
+    
 class FilmGenre(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE, db_column='film_id')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, db_column='genre_id')
@@ -33,6 +33,8 @@ class FilmGenre(models.Model):
 
     def __str__(self):
         return f'Film: {self.film}, Genre: {self.genre}'
+
+
 
 class Hall(models.Model):
     name = models.CharField(max_length=45, unique=True)
