@@ -91,8 +91,8 @@ class Seat(models.Model):
 
 
 class Session(models.Model):
-    film = models.ForeignKey(Film, db_column='film_id', on_delete=models.DO_NOTHING)
-    hall = models.ForeignKey(Hall, db_column='hall_id', on_delete=models.DO_NOTHING)
+    film = models.ForeignKey(Film, db_column='film_id', on_delete=models.CASCADE)
+    hall = models.ForeignKey(Hall, db_column='hall_id', on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
