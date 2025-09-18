@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Зовнішні Аеропорти</title>
+</head>
+<body>
+    <h1>Аеропорти з API партнера</h1>
+    <p><a href="/">На головну</a></p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Код</th>
+                <th>Місто</th>
+                <th>Країна</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for airport in airports %}
+            <tr>
+                <td>{{ airport.id }}</td>
+                <td>{{ airport.name }}</td>
+                <td>{{ airport.code }}</td>
+                <td>{{ airport.city }}</td>
+                <td>{{ airport.country }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="airport_id" value="{{ airport.id }}">
+                        <button type="submit">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Аеропортів не знайдено або API недоступне.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

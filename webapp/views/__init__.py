@@ -7,3 +7,4 @@ from .seat import SeatListView, SeatDetailView, SeatCreateView, SeatUpdateView, 
 from .session import SessionListView, SessionDetailView, SessionCreateView, SessionUpdateView, SessionDeleteView
 from .ticket import TicketListView, TicketDetailView, TicketCreateView, TicketUpdateView, TicketDeleteView
 from .payment import PaymentListView, PaymentDetailView, PaymentCreateView, PaymentDeleteView, PaymentUpdateView
+from .external_api import ExternalAirportListView

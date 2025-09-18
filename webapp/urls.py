@@ -57,4 +57,6 @@ urlpatterns = [
     path('payments/add/', views.PaymentCreateView.as_view(), name='payment-add'),
     path('payments/update/<int:pk>/', views.PaymentUpdateView.as_view(), name='payment-update'),
     path('payments/delete/<int:pk>/', views.PaymentDeleteView.as_view(), name='payment-delete'),
+
+    path('external/airports/', views.ExternalAirportListView.as_view(), name='external-airport-list'),
 ]
