@@ -8,7 +8,7 @@ API_USERNAME = 'olesia'
 API_PASSWORD = 'python1111' 
 
 class ExternalAirportListView(View):
-    template_name = 'webapp/external_airport.html'
+    template_name = 'webapp/external_airports.html'
 
     def get(self, request):
         try:
