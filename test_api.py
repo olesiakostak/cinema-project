@@ -34,10 +34,10 @@ airport_data = {
     "city": "Kyiv",
     "country": "Ukraine"
 }
-response = requests.put(BASE_URL + 'airports/' + '7/', json=airport_data, auth=auth)
+response = requests.put(BASE_URL + 'airports/' + '10/', json=airport_data, auth=auth)
 print("Status Code:", response.status_code)
 print("Response JSON:", response.json())
 
-# print("\n---DELETE ITEM BY ID")
-# response = requests.delete(BASE_URL + 'airports/' + '7/', auth=auth)
-# print("Status Code:", response.status_code)
+print("\n---DELETE ITEM BY ID")
+response = requests.delete(BASE_URL + 'airports/' + '10/', auth=auth)
+print("Status Code:", response.status_code)
