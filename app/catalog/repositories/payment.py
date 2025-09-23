@@ -14,3 +14,4 @@ class PaymentRepository(BaseRepository):
         return self.get_all().filter(
             status='fail'
         )
+    

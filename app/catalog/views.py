@@ -43,6 +43,11 @@ class HallViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.halls
     serializer_class = HallSerializer
 
+    @action(detail=False, methods=['get'])
+    def performance_report(self, request):
+        data = self.repository.get_hall_stats()
+        return Response(list(data))
+
 class CustomerViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.customers
     serializer_class = CustomerSerializer
@@ -56,6 +61,11 @@ class GiftCertificateViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.gift_certificates
     serializer_class = GiftCertificateSerializer
 
+    @action(detail=False, methods=['get'])
+    def usage_report(self, request):
+        data = self.repository.get_usage_stats()
+        return Response(list(data))
+
 class SeatViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.seats
     serializer_class = SeatSerializer
@@ -63,6 +73,11 @@ class SeatViewSet(BaseRepositoryViewSet):
 class SessionViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.sessions
     serializer_class = SessionSerializer
+
+    @action(detail=False, methods=['get'])
+    def time_report(self, request):
+        data = self.repository.get_session_time_stats()
+        return Response(list(data))
 
 class TicketViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.tickets
