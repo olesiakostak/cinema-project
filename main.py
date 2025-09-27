@@ -14,11 +14,16 @@ def main():
     ticket4 = DiscountedElectronicTicket(4, 2, 5, 200, 'sophia@gmail.com', 0.3)
 
     print(Ticket.help())
-    
-    ticket1.purchase(datetime.now())
-    ticket2.purchase(datetime.now())
-    ticket3.purchase(datetime.now())
-    ticket4.purchase(datetime.now())
+    print(ticket1.ticket_info())
+    print(ticket2.ticket_info())
+    print(ticket3.ticket_info())
+    print(ticket4.ticket_info())
+
+    print(ticket1.purchase(datetime.now()))
+    print(ticket1.purchase(datetime.now()))
+    print(ticket2.purchase(datetime.now()))
+    print(ticket3.purchase(datetime.now()))
+    print(ticket4.purchase(datetime.now()))
 
     print(Ticket.help())
 
