@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'app.catalog',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,11 @@ WSGI_APPLICATION = "cinema_project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "cinema",
+        "USER": "root",
+        "PASSWORD": "olesi@1488",
+        "HOST": "localhost",
+        "PORT": "3306"
     }
 }
 
