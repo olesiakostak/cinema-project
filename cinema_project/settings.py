@@ -75,10 +75,10 @@ WSGI_APPLICATION = "cinema_project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
         "NAME": "cinema",
         "USER": "root",
-        "PASSWORD": "olesi@1488",
+        "PASSWORD": "Olesi@1488",
         "HOST": "localhost",
         "PORT": "3306"
     }
