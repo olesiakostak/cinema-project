@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import FilmSerializer, GenreSerializer, CustomerSerializer, GiftCertificateSerializer, SeatSerializer, SessionSerializer, TicketSerializer, PaymentSerializer
+from .serializers import FilmSerializer, GenreSerializer, HallSerializer, CustomerSerializer, GiftCertificateSerializer, SeatSerializer, SessionSerializer, TicketSerializer, PaymentSerializer
 from .repositories import unit_of_work
 
 class BaseRepositoryViewSet(viewsets.ModelViewSet):
@@ -19,6 +19,10 @@ class FilmViewSet(BaseRepositoryViewSet):
 class GenreViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.genres
     serializer_class = GenreSerializer
+
+class HallViewSet(BaseRepositoryViewSet):
+    repository = unit_of_work.halls
+    serializer_class = HallSerializer
 
 class CustomerViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.customers
