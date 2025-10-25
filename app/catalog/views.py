@@ -13,13 +13,13 @@ class BaseRepositoryViewSet(viewsets.ModelViewSet):
         return self.repository.get_all()
     
     def perform_create(self, serializer):
-        return self.repository.create(**serializer.validated_data)
+        serializer.instance = self.repository.create(**serializer.validated_data)
     
     def perform_update(self, serializer):
-        return self.repository.update(object_id=serializer.instance.id, **serializer.validated_data)
+        self.repository.update(obj_id=serializer.instance.id, **serializer.validated_data)
     
     def perform_destroy(self, instance):
-        return self.repository.delete(instance.id)
+        self.repository.delete(instance.id)
 
 class FilmViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.films
