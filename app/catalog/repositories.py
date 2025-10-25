@@ -17,7 +17,7 @@ class BaseRepository:
     def create(self, **kwargs):
         return self.model.objects.create(**kwargs)
     
-    def delete(self, obj_id, **kwargs):
+    def update(self, obj_id, **kwargs):
         obj = self.get_by_id(obj_id)
         if obj:
             for key, value in kwargs.items():
@@ -26,7 +26,7 @@ class BaseRepository:
             return obj
         return None
     
-    def destroy(self, obj_id):
+    def delete(self, obj_id):
         obj = self.get_by_id(obj_id)
         if obj:
             obj.delete()
