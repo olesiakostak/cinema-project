@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import FilmSerializer, GenreSerializer, HallSerializer, CustomerSerializer, GiftCertificateSerializer, SeatSerializer, SessionSerializer, TicketSerializer, PaymentSerializer
 from .repositories import unit_of_work
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from django.db.models import Count, Sum
 
 class BaseRepositoryViewSet(viewsets.ModelViewSet):
     repository = None
@@ -15,6 +18,21 @@ class BaseRepositoryViewSet(viewsets.ModelViewSet):
 class FilmViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.films
     serializer_class = FilmSerializer
+
+    @action(detail=False, methods=['get']) 
+    def performance_report(self, request):
+        data = unit_of_work.films.get_all().annotate(
+            total_sessions=Count('session', distinct=True),
+            number_of_sold_tickets=Count('session__ticket'),
+            total_revenue=Sum('session__ticket__base_price')
+            ).values(
+                'title',
+                'rating',
+                'total_sessions',
+                'number_of_sold_tickets',
+                'total_revenue'
+            )
+        return Response(list(data))
 
 class GenreViewSet(BaseRepositoryViewSet):
     repository = unit_of_work.genres
