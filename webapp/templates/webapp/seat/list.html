@@ -1,0 +1,14 @@
+<h1>List of all Seats</h1>
+
+{% if seats %}
+    <ul>
+        {% for seat in seats %}
+            <li><a href="{% url 'webapp:seat-detail' seat.id %}">{{ seat }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No seats have been added yet.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:seat-add' %}">Add new seat</a>

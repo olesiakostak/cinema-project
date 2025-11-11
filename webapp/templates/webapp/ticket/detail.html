@@ -1,0 +1,13 @@
+<h1>Ticket Details</h1>
+<hr>
+<p><strong>Session:</strong> {{ ticket.session }}</p>
+<p><strong>Seat:</strong> {{ ticket.seat }}</p>
+<p><strong>Base Price:</strong> {{ ticket.base_price }}</p>
+<p><strong>Status:</strong> {{ ticket.status }}</p>
+<p><strong>Purchased At:</strong> {{ ticket.purchase_time }}</p>
+<hr>
+<a href="{% url 'webapp:ticket-update' ticket.id %}">Edit this ticket</a>
+<hr>
+<a href="{% url 'webapp:ticket-delete' ticket.id %}">Delete this ticket</a>
+<hr>
+<a href="{% url 'webapp:ticket-list' %}">Return to the list of tickets</a>

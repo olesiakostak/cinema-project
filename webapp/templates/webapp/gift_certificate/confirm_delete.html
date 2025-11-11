@@ -1,0 +1,9 @@
+<h1>Delete certificate</h1>
+<p>Confirm that you want to delete certificate: <strong>{{ object.name }}</strong></p>
+
+<form method='post'>
+    {% csrf_token %}
+    <button type='submit'>Delete this cetificate</button>
+</form>
+
+<a href="{% url 'webapp:gift-certificate-detail' object.id %}">Return to the gift-certificate</a> 

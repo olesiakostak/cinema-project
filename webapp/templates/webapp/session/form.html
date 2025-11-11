@@ -1,0 +1,10 @@
+<h1>{% if object %}Edit Session{% else %}Add new Session{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:session-list' %}">Return to the list</a>

@@ -1,0 +1,14 @@
+<h1>List of all Payments</h1>
+
+{% if payments %}
+    <ul>
+        {% for payment in payments %}
+            <li><a href="{% url 'webapp:payment-detail' payment.id %}">{{ payment }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No payments have been made yet.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:payment-add' %}">Add new payment</a>

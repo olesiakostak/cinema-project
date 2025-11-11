@@ -1,0 +1,10 @@
+<h1>{% if object %}Edit Ticket{% else %}Add new Ticket{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:ticket-list' %}">Return to the list</a>

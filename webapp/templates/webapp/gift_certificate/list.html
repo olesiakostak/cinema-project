@@ -1,0 +1,14 @@
+<h1>Lift of all certificates</h1>
+
+{% if certificates %}
+    <ul>
+        {% for cert in certificates %}
+            <li><a href="{% url 'webapp:gift-certificate-detail' cert.id %}">{{ cert.code }} (Balance: {{ cert.balance }})</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No certificate was entered.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:gift-certificate-add' %}">Add certificate</a>

@@ -1,0 +1,10 @@
+<h1>Delete Seat</h1>
+<p>Are you sure you want to delete this seat: <strong>{{ object }}</strong>?</p>
+
+<form method='post'>
+    {% csrf_token %}
+    <button type='submit'>Yes, delete</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:seat-detail' object.id %}">No, return to details</a>

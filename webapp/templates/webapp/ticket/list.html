@@ -1,0 +1,14 @@
+<h1>List of all Tickets</h1>
+
+{% if tickets %}
+    <ul>
+        {% for ticket in tickets %}
+            <li><a href="{% url 'webapp:ticket-detail' ticket.id %}">{{ ticket }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tickets have been created yet.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:ticket-add' %}">Add new ticket</a>

@@ -1,0 +1,13 @@
+<h1>Session Details</h1>
+<hr>
+<p><strong>Film:</strong> {{ session.film }}</p>
+<p><strong>Hall:</strong> {{ session.hall }}</p>
+<p><strong>Start Time:</strong> {{ session.start_time }}</p>
+<p><strong>End Time:</strong> {{ session.end_time }}</p>
+<p><strong>Status:</strong> {{ session.status }}</p>
+<hr>
+<a href="{% url 'webapp:session-update' session.id %}">Edit this session</a>
+<hr>
+<a href="{% url 'webapp:session-delete' session.id %}">Delete this session</a>
+<hr>
+<a href="{% url 'webapp:session-list' %}">Return to the list of sessions</a>

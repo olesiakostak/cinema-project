@@ -1,0 +1,14 @@
+<h1>List of all Sessions</h1>
+
+{% if sessions %}
+    <ul>
+        {% for session in sessions %}
+            <li><a href="{% url 'webapp:session-detail' session.id %}">{{ session }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No sessions have been scheduled yet.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:session-add' %}">Add new session</a>

@@ -1,0 +1,10 @@
+<h1>{% if object %}Edit Payment{% else %}Add new Payment{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:payment-list' %}">Return to the list</a>

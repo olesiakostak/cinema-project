@@ -1,0 +1,10 @@
+<h1>Certificate details:</h1>
+<h2>Code: {{ certificate.code }}</h2>
+<p><strong>Balance:</strong> {{ certificate.balance }}</p>
+<p><strong>Expiration date:</strong> {{ certificate.expiration_date }}</p>
+<hr>
+<a href="{% url 'webapp:gift-certificate-update' certificate.id %}">Edit</a>
+<hr>
+<a href="{% url 'webapp:gift-certificate-delete' certificate.id %}">Delete</a>
+<hr>
+<a href="{% url 'webapp:gift-certificate-list' %}">Return to the list</a>

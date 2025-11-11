@@ -1,0 +1,10 @@
+<h1>{% if object %}Edit Seat{% else %}Add new Seat{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:seat-list' %}">Return to the list</a>

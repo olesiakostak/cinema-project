@@ -1,0 +1,11 @@
+<h1>Seat Details</h1>
+<h2>Hall: {{ seat.hall }}</h2> 
+<hr>
+<p><strong>Row:</strong> {{ seat.row }}</p>
+<p><strong>Seat Number:</strong> {{ seat.seat }}</p>
+<hr>
+<a href="{% url 'webapp:seat-update' seat.id %}">Edit this seat</a>
+<hr>
+<a href="{% url 'webapp:seat-delete' seat.id %}">Delete this seat</a>
+<hr>
+<a href="{% url 'webapp:seat-list' %}">Return to the list of seats</a>
