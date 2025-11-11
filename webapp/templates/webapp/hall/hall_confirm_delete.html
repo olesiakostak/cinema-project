@@ -1,0 +1,9 @@
+<h1>Delete hall</h1>
+<p>Confirm that you want to delete hall: <strong>{{ object.name }}</strong></p>
+
+<form method='post'>
+    {% csrf_token %}
+    <button type='submit'>Delete this hall</button>
+</form>
+
+<a href="{% url 'webapp:hall-detail' object.id %}">Return to the hall</a> 

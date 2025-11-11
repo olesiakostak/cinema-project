@@ -1,0 +1,14 @@
+<h1>List of all customers</h1>
+
+{% if customers %}
+    <ul>
+        {% for customer in customers %}
+            <li><a href="{% url 'webapp:customer-detail' customer.id %}">{{ customer.first_name }} {{ customer.last_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No customer was entered.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:customer-add' %}">Add new customer</a>

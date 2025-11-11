@@ -1,0 +1,14 @@
+<h1>List of all halls</h1>
+
+{% if halls %}
+    <ul>
+        {% for hall in halls %}
+            <li><a href="{% url 'webapp:hall-detail' hall.id %}">{{ hall.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hall was entered.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'webapp:hall-add' %}">Add new hall</a>

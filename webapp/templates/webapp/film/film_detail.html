@@ -4,8 +4,18 @@
 <p><strong>Duration:</strong> {{ film.duration }} minutes</p>
 <p><strong>Rating:</strong> {{ film.rating }}</p>
 <p><strong>Release Date:</strong> {{ film.release_date }}</p>
-<p><strong>Description:</strong></p>
-<p>{{ film.description }}</p>
-
+<p><strong>Description:</strong> {{ film.description }} </p>
+<p><strong>Genres:</strong></p>
+<ul>
+    {% for genre in film.genres.all %}
+        <li>{{ genre.name }}</li>
+    {% empty %}
+        <li>Genres were not entered</li>
+    {% endfor %}
+</ul>
+<hr>
+<a href="{% url 'webapp:film-update' film.id %}">Update film</a>
+<hr>
+<a href="{% url 'webapp:film-delete' film.id %}">Delete film</a>
 <hr>
 <a href="{% url 'webapp:film-list' %}">Return to the list</a>

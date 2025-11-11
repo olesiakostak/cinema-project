@@ -35,7 +35,6 @@ class FilmGenre(models.Model):
         return f'Film: {self.film}, Genre: {self.genre}'
 
 
-
 class Hall(models.Model):
     name = models.CharField(max_length=45, unique=True)
 

@@ -1,0 +1,9 @@
+<h1>Delete film</h1>
+<p>Confirm that you want to delete film: <strong>{{ object.title }}</strong></p>
+
+<form method='post'>
+    {% csrf_token %}
+    <button type='submit'>Delete this film</button>
+</form>
+
+<a href="{% url 'webapp:film-detail' object.id %}">Return to the film</a> 

@@ -1,0 +1,10 @@
+<h1>Hall details: </h1>
+<h2>{{ hall.name }}</h2>
+<hr>
+<p><strong>ScreenType:</strong> {{ hall.screen_type }} minutes</p>
+<hr>
+<a href="{% url 'webapp:hall-update' hall.id %}">Update hall</a>
+<hr>
+<a href="{% url 'webapp:hall-delete' hall.id %}">Delete hall</a>
+<hr>
+<a href="{% url 'webapp:hall-list' %}">Return to the list</a>

@@ -1,0 +1,14 @@
+<h1>customer details: </h1>
+<h2>{{ customer.first_name }} {{ customer.last_name }}</h2>
+<hr>
+<p><strong>First name:</strong> {{ customer.first_name }} </p>
+<p><strong>Last name:</strong> {{ customer.last_name }} </p>
+<p><strong>Phone number:</strong> {{ customer.phone_number }} </p>
+<p><strong>Email:</strong> {{ customer.email }} </p>
+<p><strong>Birth date:</strong> {{ customer.birth_date }} </p>
+<hr>
+<a href="{% url 'webapp:customer-update' customer.id %}">Update customer</a>
+<hr>
+<a href="{% url 'webapp:customer-delete' customer.id %}">Delete customer</a>
+<hr>
+<a href="{% url 'webapp:customer-list' %}">Return to the list</a>
