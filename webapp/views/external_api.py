@@ -1,9 +1,8 @@
 import requests
 from django.shortcuts import render, redirect
 from django.views import View
-from django.conf import settings
 
-API_BASE_URL = "http://127.0.0.1:8001/api/"
+API_BASE_URL = "http://127.0.0.1:8001/"
 API_USERNAME = 'olesia'      
 API_PASSWORD = 'python1111' 
 
@@ -12,10 +11,7 @@ class ExternalAirportListView(View):
 
     def get(self, request):
         try:
-            response = requests.get(
-                f"{API_BASE_URL}airports/", 
-                auth=(API_USERNAME, API_PASSWORD)
-            )
+            response = requests.get(f"{API_BASE_URL}airports/", auth=(API_USERNAME, API_PASSWORD))
             if response.status_code == 200:
                 airports = response.json()
             else:
@@ -31,10 +27,7 @@ class ExternalAirportListView(View):
         if airport_id:
             try:
                 delete_url = f"{API_BASE_URL}airports/{airport_id}/"
-                requests.delete(
-                    delete_url, 
-                    auth=(API_USERNAME, API_PASSWORD)
-                )
+                requests.delete(delete_url, auth=(API_USERNAME, API_PASSWORD))
             except requests.exceptions.RequestException:
                 pass 
         return redirect('webapp:external-airport-list')

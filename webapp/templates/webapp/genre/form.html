@@ -1,4 +1,4 @@
-<h1>Add new genre</h1>
+<h1>{% if object %}Edit Genre{% else %}Add new Genre{% endif %}</h1>
 
 <form method="post">
     {% csrf_token %}

@@ -1,4 +1,4 @@
-<h1>Add new film</h1>
+<h1>{% if object %}Edit Film{% else %}Add new Film{% endif %}</h1>
 
 <form method="post">
     {% csrf_token %}

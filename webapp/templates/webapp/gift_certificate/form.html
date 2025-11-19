@@ -1,4 +1,4 @@
-<h1>Add new gift-certificate</h1>
+<h1>{% if object %}Edit Gift Certificate{% else %}Add new Gift Certificate{% endif %}</h1>
 
 <form method="post">
     {% csrf_token %}
