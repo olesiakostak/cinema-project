@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналітичний Дашборд</title>
+</head>
+<body>
+    <h1>Cinema Analytics</h1>
+    <div class="report-card">
+        <h2> Films Revenue</h2>
+        
+        <div class="stats-box">
+            <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
+            <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
+            <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
+            <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
+        </div>
+        
+        <div>
+            {{ chart_films|safe }}
+        </div>
+    </div>
+
+    <div class="report-card">
+        <h2> Genres Popularity </h2>
+        <div>
+            {{ chart_genres|safe }}
+        </div>
+    </div>
+
+    <div class="report-card">
+        <h2>Halls Popularity</h2>
+        <div>
+            {{ chart_halls|safe }}
+        </div>
+    </div>
+
+    <div class="report-card">
+        <h2> Hours Activity </h2>
+        <div>
+            {{ chart_sessions|safe }}
+        </div>
+    </div>
+
+    <div class="report-card">
+        <h2> Top Clients </h2>
+         <div class="stats-box">
+            <p><strong>Average spend:</strong> {{ stats_films.mean|floatformat:2 }}</p>
+        </div>
+        <div>
+            {{ chart_customers|safe }}
+        </div>
+    </div>
+
+    <div class="report-card">
+        <h2>Certificates Usage</h2>
+        <h2> Top Clients </h2>
+         <div class="stats-box">
+            <p><strong>Average usage:</strong> {{ stats_gift_certificates.mean|floatformat:2 }}</p>
+        </div>
+        <div>
+            {{ chart_gift_certificates|safe }}
+        </div>
+    </div>
+
+</body>
+</html>
