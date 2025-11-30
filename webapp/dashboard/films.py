@@ -65,7 +65,7 @@ def films_analytics(request):
     # # ---------------------------------------------------------
     # # Рендеринг шаблону
     # # ---------------------------------------------------------
-    return render(request, "webapp/templates/film/dashboard.html", {
+    return render(request, "webapp/film/dashboard.html", {
         "chart_films": html_films,
         "stats_films": stats_films,
         "min_revenue_val": min_revenue, 

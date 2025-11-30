@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema Analytics Dashboard</title>
+    <style>
+        .report-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stats-box {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-card">
+        <h2>Films Revenue</h2>
+        
+        <div class="stats-box">
+            <form method="get">
+                <label>
+                    Min Revenue: 
+                    <input type="number" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
+                </label>
+                
+                <label style="margin-left: 10px;">
+                    Max Revenue: 
+                    <input type="number" name="max_revenue" value="{{ max_revenue_val|default:'' }}">
+                </label>
+                
+                <button type="submit" style="margin-left: 10px;">Filter</button>
+            </form>
+        </div>
+        
+        <div class="stats-box">
+            <h3>Statistic:</h3>
+            <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
+            <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
+            <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
+            <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
+        </div>
+        
+        <div>
+            {{ chart_films|safe }}
+        </div>
+    </div> </body>
+</html>
