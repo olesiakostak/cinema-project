@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres Analytics</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
+        .report-card { 
+            background: white; 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .stats-box { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            display: flex; 
+            justify-content: space-around; 
+        }
+        .nav-links { text-align: center; margin-top: 20px; }
+        a { text-decoration: none; color: #007bff; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Genres Analytics</h1>
+
+    <div class="report-card">
+        <h2>Genre Popularity</h2>
+        
+        {% if stats_genres %}
+        <div class="stats-box">
+            <p><strong>Average films per genre:</strong> {{ stats_genres.mean|floatformat:1 }}</p>
+            <p><strong>Max films in genre:</strong> {{ stats_genres.max|floatformat:0 }}</p>
+        </div>
+        {% endif %}
+
+        <div>
+            {{ chart_genres|safe }}
+        </div>
+    </div>
+
+</body>
+</html>

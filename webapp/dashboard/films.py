@@ -15,22 +15,9 @@ def films_analytics(request):
         html_films = build_chart(df_films, "title", "total_revenue", "Film revenue", "bar")
     else:
         stats_films = {}
-        html_films = "<p>Дані відсутні</p>"
+        html_films = "<p>Missing data</p>"
 
-    # # ---------------------------------------------------------
-    # # 2. ЖАНРИ (Genre Popularity)
-    # # ---------------------------------------------------------
-    # df_genres = fetch_data("api/genres/genre_popularity/")
-    # stats_genres = calculate_stats(df_genres, "films_count")
-    # html_genres = build_chart(df_genres, "name", "films_count", "Genre popularity", "pie")
-
-    # # ---------------------------------------------------------
-    # # 3. ЗАЛИ (Halls)
-    # # ---------------------------------------------------------
-    # df_halls = fetch_data("api/halls/performance_report/")
-    # # Тут y_param має збігатися з тим, що повертає HallRepository ('sessions_count' або 'total_revenue')
-    # stats_halls = calculate_stats(df_halls, "sessions_count") 
-    # html_halls = build_chart(df_halls, "name", "sessions_count", "Hall popularity", "pie")
+  
 
     # # ---------------------------------------------------------
     # # 4. СЕАНСИ (Sessions Time)

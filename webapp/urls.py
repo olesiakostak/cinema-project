@@ -10,18 +10,21 @@ urlpatterns = [
     path('genres/add/', views.GenreCreateView.as_view(), name='genre-add'),
     path('genres/update/<int:pk>/', views.GenreUpdateView.as_view(), name='genre-update'),
     path('genres/delete/<int:pk>/', views.GenreDeleteView.as_view(), name='genre-delete'),
+    path('genres/dashboard/', dashboard.genres_analytics, name='genre-analytics'),
 
     path('films/', views.FilmListView.as_view(), name='film-list'),
     path('films/<int:pk>/', views.FilmDetailView.as_view(), name='film-detail'),
     path('films/add/', views.FilmCreateView.as_view(), name='film-add'),
     path('films/update/<int:pk>/', views.FilmUpdateView.as_view(), name='film-update'),
     path('films/delete/<int:pk>/', views.FilmDeleteView.as_view(), name='film-delete'),
+    path('films/dashboard/', dashboard.films_analytics, name='film-analytics'),
 
     path('halls/', views.HallListView.as_view(), name='hall-list'),
     path('halls/<int:pk>/', views.HallDetailView.as_view(), name='hall-detail'),
     path('halls/add/', views.HallCreateView.as_view(), name='hall-add'),
     path('halls/update/<int:pk>/', views.HallUpdateView.as_view(), name='hall-update'),
     path('halls/delete/<int:pk>/', views.HallDeleteView.as_view(), name='hall-delete'),
+    path('halls/dashboard/', dashboard.halls_analytics, name='hall-analytics'),
 
     path('customers/', views.CustomerListView.as_view(), name='customer-list'),
     path('customers/<int:pk>/', views.CustomerDetailView.as_view(), name='customer-detail'),
@@ -60,5 +63,5 @@ urlpatterns = [
     path('payments/delete/<int:pk>/', views.PaymentDeleteView.as_view(), name='payment-delete'),
 
     path('external/airports/', views.ExternalAirportListView.as_view(), name='external-airport-list'),
-    path('analytics/films/', dashboard.films_analytics, name='film-analytics'),
+
 ]

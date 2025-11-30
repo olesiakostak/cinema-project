@@ -11,7 +11,7 @@ def genres_analytics(request):
         html_genres = build_chart(df_genres, "name", "films_count", "Genre popularity", "pie")
     else:
         stats_genres = {}
-        stats_genres = "<p>Дані відсутні</p>"
+        html_genres = "<p>Missing data</p>"
 
 
     return render(request, "webapp/genre/dashboard.html", {
