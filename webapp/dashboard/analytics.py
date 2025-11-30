@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
 import plotly.express as px
+from bokeh.plotting import figure
+from bokeh.embed import components
+from bokeh.models import ColumnDataSource
+from bokeh.palettes import Spectral6
 
 BASE_URL = "http://127.0.0.1:8000/"
 USERNAME = 'olesia'
@@ -39,7 +43,7 @@ def filter_df_data(df, y_param, x_min=None, x_max=None):
     return df
 
 
-def build_chart(df, x_param, y_param, title, chart_type="bar"):
+def build_plotly_chart(df, x_param, y_param, title, chart_type="bar", x_title=None, y_title=None):
     if chart_type == "line":
         fig = px.line(df, x=x_param, y=y_param, title=title)
     elif chart_type == "pie": 
@@ -47,5 +51,26 @@ def build_chart(df, x_param, y_param, title, chart_type="bar"):
     else:
         fig = px.bar(df, x=x_param, y=y_param, title=title)
 
+    if x_title:
+        fig.update_layout(xaxis_title=x_title)
+    if y_title:
+        fig.update_layout(yaxis_title=y_title)
+
     char_field = fig.to_html(full_html=False)
     return char_field
+
+def build_bokeh_chart(df, x_param, y_param, title):
+    source = ColumnDataSource(df)
+    
+    x_range = df[x_param].astype(str).tolist()
+    fig = figure(x_range=x_range, height=400, title=title, toolbar_location=None, tools="")
+
+    fig.vbar(x=x_param, top=y_param, width=0.9, source=source,
+           line_color='white', fill_color=Spectral6[0])
+
+    fig.xgrid.grid_line_color = None
+    fig.y_range.start = 0
+    
+    script, div = components(fig)
+    
+    return script, div

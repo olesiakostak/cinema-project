@@ -1,4 +1,4 @@
-from .analytics import fetch_data, filter_df_data, calculate_stats, build_chart
+from .analytics import fetch_data, filter_df_data, calculate_stats, build_plotly_chart, build_bokeh_chart
 from django.shortcuts import render
 
 
@@ -12,15 +12,35 @@ def films_analytics(request):
     if df_films is not None and not df_films.empty:
         df_films = filter_df_data(df_films, "total_revenue", x_min=min_revenue, x_max=max_revenue)
         stats_films = calculate_stats(df_films, "total_revenue", group_by_col="rating")
-        html_films = build_chart(df_films, "title", "total_revenue", "Film revenue", "bar")
+
+        html_films = build_plotly_chart(
+            df_films, 
+            "title", 
+            "total_revenue", 
+            "Film revenue", 
+            "bar", 
+            "Revenue per film", 
+            "Film title")
+
+        bokeh_script, bokeh_div = build_bokeh_chart(
+                df_films, 
+                x_param="title", 
+                y_param="number_of_sold_tickets", 
+                title="Sold Tickets"
+            )
     else:
         stats_films = {}
         html_films = "<p>Missing data</p>"
-
+        bokeh_script = ""  
+        bokeh_div = ""
 
     return render(request, "webapp/film/dashboard.html", {
+        "min_revenue_val": min_revenue, 
+        "max_revenue_val": max_revenue,
+        
         "chart_films": html_films,
         "stats_films": stats_films,
-        "min_revenue_val": min_revenue, 
-        "max_revenue_val": max_revenue
+
+        "bokeh_script": bokeh_script,
+        "bokeh_div": bokeh_div,
     })

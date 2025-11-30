@@ -1,4 +1,4 @@
-from .analytics import fetch_data, filter_df_data, calculate_stats, build_chart
+from .analytics import fetch_data, filter_df_data, calculate_stats, build_plotly_chart
 from django.shortcuts import render
 
 
@@ -8,7 +8,7 @@ def genres_analytics(request):
 
     if df_genres is not None and not df_genres.empty:
         stats_genres = calculate_stats(df_genres, "films_count")
-        html_genres = build_chart(df_genres, "name", "films_count", "Genre popularity", "pie")
+        html_genres = build_plotly_chart(df_genres, "name", "films_count", "Genre popularity", "pie")
     else:
         stats_genres = {}
         html_genres = "<p>Missing data</p>"

@@ -1,4 +1,4 @@
-from .analytics import fetch_data, filter_df_data, calculate_stats, build_chart
+from .analytics import fetch_data, filter_df_data, calculate_stats, build_plotly_chart
 from django.shortcuts import render
 
 
@@ -8,7 +8,7 @@ def gift_certificates_analytics(request):
 
     if df_certs is not None and not df_certs.empty:
         stats_certs = calculate_stats(df_certs, "usage_count")
-        html_certs = build_chart(df_certs, "code", "usage_count", "Gift-Certificates Usage", "bar")
+        html_certs = build_plotly_chart(df_certs, "code", "usage_count", "Gift-Certificates Usage", "bar")
     else:
         stats_certs = {}
         html_certs = "<p>Missing data</p>"
