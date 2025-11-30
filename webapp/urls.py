@@ -31,12 +31,15 @@ urlpatterns = [
     path('customers/add/', views.CustomerCreateView.as_view(), name='customer-add'),
     path('customers/update/<int:pk>/', views.CustomerUpdateView.as_view(), name='customer-update'),
     path('customers/delete/<int:pk>/', views.CustomerDeleteView.as_view(), name='customer-delete'),
+    path('customers/dashboard/', dashboard.customers_analytics, name='customer-analytics'),
+
 
     path('gift-certificates/', views.GiftCertificateListView.as_view(), name='gift-certificate-list'),
     path('gift-certificates/<int:pk>/', views.GiftCertificateDetailView.as_view(), name='gift-certificate-detail'),
     path('gift-certificates/add/', views.GiftCertificateCreateView.as_view(), name='gift-certificate-add'),
     path('gift-certificates/update/<int:pk>/', views.GiftCertificateUpdateView.as_view(), name='gift-certificate-update'),
     path('gift-certificates/delete/<int:pk>/', views.GiftCertificateDeleteView.as_view(), name='gift-certificate-delete'),
+    path('gift-certificates/dashboard/', dashboard.gift_certificates_analytics, name='gift-certificate-analytics'),
 
     path('seats/', views.SeatListView.as_view(), name='seat-list'),
     path('seats/<int:pk>/', views.SeatDetailView.as_view(), name='seat-detail'),

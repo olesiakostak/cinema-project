@@ -17,59 +17,10 @@ def films_analytics(request):
         stats_films = {}
         html_films = "<p>Missing data</p>"
 
-  
 
-  
-    # # ---------------------------------------------------------
-    # # 5. КЛІЄНТИ (Top Customers) - можна теж додати фільтр!
-    # # ---------------------------------------------------------
-    # min_spend = request.GET.get('min_spend') # Додатковий фільтр
-    
-    # df_customers = fetch_data("api/customers/customer_report/")
-    
-    # if df_customers is not None and not df_customers.empty:
-    #     df_customers = filter_df_data(df_customers, "total_spend", x_min=min_spend)
-    #     stats_customers = calculate_stats(df_customers, "total_spend")
-    #     # Використовуємо 'last_name' або 'first_name' для осі X
-    #     html_customers = build_chart(df_customers, "last_name", "total_spend", "Top clients", "bar")
-    # else:
-    #     stats_customers = {}
-    #     html_customers = "<p>Немає даних</p>"
-
-    # # ---------------------------------------------------------
-    # # 6. СЕРТИФІКАТИ (Gift Certificates)
-    # # ---------------------------------------------------------
-    # df_certs = fetch_data("api/gift-certificates/usage_report/")
-    # stats_certs = calculate_stats(df_certs, "usage_count")
-    # html_certs = build_chart(df_certs, "code", "usage_count", "Gift-Certificates Usage", "bar")
-
-    # # ---------------------------------------------------------
-    # # Рендеринг шаблону
-    # # ---------------------------------------------------------
     return render(request, "webapp/film/dashboard.html", {
         "chart_films": html_films,
         "stats_films": stats_films,
         "min_revenue_val": min_revenue, 
         "max_revenue_val": max_revenue
-
-        # # Жанри
-        # "chart_genres": html_genres,
-        # "stats_genres": stats_genres,
-
-        # # Зали
-        # "chart_halls": html_halls,
-        # "stats_halls": stats_halls,
-
-        # # Сеанси
-        # "chart_sessions": html_sessions,
-        # "stats_sessions": stats_sessions,
-
-        # # Клієнти
-        # "chart_customers": html_customers,
-        # "stats_customers": stats_customers,
-        # "min_spend_val": min_spend,
-
-        # # Сертифікати
-        # "chart_gift_certificates": html_certs,
-        # "stats_gift_certificates": stats_certs
     })

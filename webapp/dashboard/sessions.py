@@ -15,7 +15,7 @@ def sessions_analytics(request):
 
 
     return render(request, "webapp/session/dashboard.html", {
-        "html_sessions": html_sessions,
+        "chart_sessions": html_sessions,
         "stats_sessions": stats_sessions,
     })
 
