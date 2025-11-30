@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Halls Analytics</title>
+    <title>Sessions Analytics</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
         h1 { text-align: center; color: #333; }
@@ -34,22 +34,22 @@
 </head>
 <body>
 
-    <h1>Halls Analytics</h1>
+    <h1>Sessions Analytics</h1>
 
     <div class="report-card">
-        <h2>Hall Popularity (by Sessions)</h2>
+        <h2>Sessions Activity (by Hour)</h2>
         
-        {% if stats_halls %}
+        {% if stats_sessions %}
         <div class="stats-box">
-            <p><strong>Average sessions per hall:</strong> {{ stats_halls.mean|floatformat:1 }}</p>
-            <p><strong>Min sessions:</strong> {{ stats_halls.min|floatformat:0 }}</p>
-            <p><strong>Max sessions:</strong> {{ stats_halls.max|floatformat:0 }}</p>
+            <p><strong>Average sessions/hour:</strong> {{ stats_sessions.mean|floatformat:1 }}</p>
+            <p><strong>Peak hour (max sessions):</strong> {{ stats_sessions.max|floatformat:0 }}</p>
         </div>
         {% endif %}
 
         <div>
-            {{ chart_halls|safe }}
+            {{ chart_sessions|safe }}
         </div>
     </div>
+
 </body>
 </html>

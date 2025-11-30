@@ -49,6 +49,7 @@ urlpatterns = [
     path('sessions/add/', views.SessionCreateView.as_view(), name='session-add'),
     path('sessions/update/<int:pk>/', views.SessionUpdateView.as_view(), name='session-update'),
     path('sessions/delete/<int:pk>/', views.SessionDeleteView.as_view(), name='session-delete'),
+    path('sessions/dashboard/', dashboard.sessions_analytics, name='session-analytics'),
 
     path('tickets/', views.TicketListView.as_view(), name='ticket-list'),
     path('tickets/<int:pk>/', views.TicketDetailView.as_view(), name='ticket-detail'),

@@ -15,6 +15,6 @@ def halls_analytics(request):
 
 
     return render(request, "webapp/hall/dashboard.html", {
-        "chart_genres": html_halls,
-        "stats_genres": stats_halls,
+        "chart_halls": html_halls,
+        "stats_halls": stats_halls,
     })
