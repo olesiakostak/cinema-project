@@ -59,18 +59,37 @@ def build_plotly_chart(df, x_param, y_param, title, chart_type="bar", x_title=No
     char_field = fig.to_html(full_html=False)
     return char_field
 
-def build_bokeh_chart(df, x_param, y_param, title):
+
+def build_bokeh_chart(df, x_param, y_param, title, chart_type="bar", x_label=None, y_label=None):
     source = ColumnDataSource(df)
     
-    x_range = df[x_param].astype(str).tolist()
-    fig = figure(x_range=x_range, height=400, title=title, toolbar_location=None, tools="")
+    if chart_type == "line":
+        fig = figure(height=400, 
+                     sizing_mode='stretch_width', 
+                     title=title)
+        
+        fig.line(x=x_param, y=y_param, source=source, line_width=3)
+        fig.circle(x=x_param, y=y_param, source=source, size=8, fill_color="white", line_width=2)
 
-    fig.vbar(x=x_param, top=y_param, width=0.9, source=source,
-           line_color='white', fill_color=Spectral6[0])
+        fig.x_range.range_padding = 0
+    else:
+        x_range = df[x_param].astype(str).tolist()
+
+        fig = figure(x_range=x_range, 
+                     height=400, 
+                     sizing_mode='stretch_width', 
+                     title=title)
+        
+        fig.vbar(x=x_param, top=y_param, width=0.8, source=source, line_color='white')
+        fig.xaxis.major_label_orientation = -1.2
 
     fig.xgrid.grid_line_color = None
     fig.y_range.start = 0
+
+    if x_label:
+        fig.xaxis.axis_label=x_label
+    if y_label:
+        fig.yaxis.axis_label=y_label
     
     script, div = components(fig)
-    
     return script, div

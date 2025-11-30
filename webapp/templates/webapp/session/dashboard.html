@@ -2,34 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
     <title>Sessions Analytics</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
         h1 { text-align: center; color: #333; }
-        
-        .report-card { 
-            background: white; 
-            border: 1px solid #ddd; 
-            padding: 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            max-width: 800px; 
-            margin: 20px auto; 
-        }
-        
-        .stats-box { 
-            background-color: #f9f9f9; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border-radius: 5px; 
-            display: flex; 
-            justify-content: space-around; 
-            border: 1px solid #eee;
-        }
-        
-        .nav-links { text-align: center; margin-top: 30px; }
-        a { text-decoration: none; color: #007bff; font-weight: bold; margin: 0 10px; }
-        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -50,6 +27,13 @@
             {{ chart_sessions|safe }}
         </div>
     </div>
+
+    {% if bokeh_div %}
+    <div class="=report-card">
+        {{ bokeh_div|safe }}
+        {{ bokeh_script|safe }}
+    </div>
+    {% endif %}
 
 </body>
 </html>

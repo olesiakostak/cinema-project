@@ -1,4 +1,4 @@
-from .analytics import fetch_data, filter_df_data, calculate_stats, build_plotly_chart
+from .analytics import fetch_data, filter_df_data, calculate_stats, build_plotly_chart, build_bokeh_chart
 from django.shortcuts import render
 
 
@@ -8,13 +8,31 @@ def halls_analytics(request):
 
     if df_halls is not None and not df_halls.empty:
         stats_halls = calculate_stats(df_halls, "sessions_count") 
-        html_halls = build_plotly_chart(df_halls, "name", "sessions_count", "Hall popularity", "pie")
+
+        html_halls = build_plotly_chart(
+            df=df_halls, 
+            x_param="name", 
+            y_param="sessions_count", 
+            title="Hall popularity", 
+            chart_type="pie")
+        
+        bokeh_script, bokeh_div = build_bokeh_chart(
+            df=df_halls,
+            x_param="name",
+            y_param="sessions_count",
+            title="Hall popularity",
+            chart_type="bar"
+        )
     else:
         stats_halls = {}
         html_halls = "<p>Missing data</p>"
+        bokeh_script, bokeh_div 
 
 
     return render(request, "webapp/hall/dashboard.html", {
         "chart_halls": html_halls,
         "stats_halls": stats_halls,
+
+        "bokeh_script": bokeh_script,
+        "bokeh_div": bokeh_div,
     })

@@ -10,11 +10,11 @@ def films_analytics(request):
     df_films = fetch_data("api/films/performance_report/")
 
     if df_films is not None and not df_films.empty:
-        df_films = filter_df_data(df_films, "total_revenue", x_min=min_revenue, x_max=max_revenue)
+        df_films_filtered = filter_df_data(df_films, "total_revenue", x_min=min_revenue, x_max=max_revenue)
         stats_films = calculate_stats(df_films, "total_revenue", group_by_col="rating")
 
         html_films = build_plotly_chart(
-            df_films, 
+            df_films_filtered, 
             "title", 
             "total_revenue", 
             "Film revenue", 
@@ -26,8 +26,7 @@ def films_analytics(request):
                 df_films, 
                 x_param="title", 
                 y_param="number_of_sold_tickets", 
-                title="Sold Tickets"
-            )
+                title="Sold Tickets")
     else:
         stats_films = {}
         html_films = "<p>Missing data</p>"

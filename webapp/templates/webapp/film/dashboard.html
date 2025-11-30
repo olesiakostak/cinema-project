@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cinema Analytics Dashboard</title>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
     <style>
         .report-card {
             border: 1px solid #ccc;
@@ -50,7 +51,7 @@
         <div>
             {{ chart_films|safe }}
         </div>
-        
+
         {% if bokeh_div %}
         <div class="report-card">
             <h2>Sold Tickets (Bokeh)</h2>

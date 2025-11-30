@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+    </style>
     <title>Genres Analytics</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
@@ -43,7 +48,16 @@
         <div>
             {{ chart_genres|safe }}
         </div>
-    </div>
 
+        {% if bokeh_div %}
+        <div class="report-card">
+            <h2>Genre popularity</h2>
+            
+            {{ bokeh_div|safe }}
+            
+            {{ bokeh_script|safe }}
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
