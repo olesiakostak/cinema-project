@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 from . import dashboard
 
-app_name = 'webapp'
 
 urlpatterns = [
     path('genres/', views.GenreListView.as_view(), name='genre-list'),
@@ -67,5 +66,6 @@ urlpatterns = [
     path('payments/delete/<int:pk>/', views.PaymentDeleteView.as_view(), name='payment-delete'),
 
     path('external/airports/', views.ExternalAirportListView.as_view(), name='external-airport-list'),
+    path('analytics/benchmark', views.benchmark_dashboard, name='benchmark')
 
 ]

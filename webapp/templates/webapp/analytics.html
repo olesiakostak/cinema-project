@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h1>Benchmark</h1>
+
+    <div class="report-card">
+        {% if chart_html %}
+        <div>
+            {{ chart_html |safe }}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
