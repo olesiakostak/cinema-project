@@ -40,7 +40,7 @@ def run_experiments(n_requests=100):
     return results
 
 def get_benchmark_chart():
-    results = run_experiments(n_requests=50) 
+    results = run_experiments(n_requests=150) 
     
     df = pd.DataFrame(results)
     
