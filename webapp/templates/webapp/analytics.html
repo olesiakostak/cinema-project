@@ -13,11 +13,17 @@
     <h1>Benchmark</h1>
 
     <div class="report-card">
-        {% if chart_benchmark %}
+        <h2>Benchmark: Workers</h2>
         <div>
-            {{ chart_benchmark |safe }}
+            {{ chart_benchmark_workers|safe }}
         </div>
-        {% endif %}
+    </div>
+
+    <div class="report-card">
+        <h2>Benchmark: Load (Requests)</h2>
+        <div>
+            {{ chart_benchmark_requests|safe }}
+        </div>
     </div>
 
 </body>

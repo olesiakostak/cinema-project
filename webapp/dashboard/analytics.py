@@ -3,12 +3,12 @@ import pandas as pd
 import plotly.express as px
 from bokeh.plotting import figure
 from bokeh.embed import components
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.palettes import Spectral6
 
 BASE_URL = "http://127.0.0.1:8000/"
 USERNAME = 'olesia'
-PASSWORD = 'olesia1488'
+PASSWORD = 'python1111'
 auth=(USERNAME, PASSWORD)
 
 
@@ -85,6 +85,13 @@ def build_bokeh_chart(df, x_param, y_param, title, chart_type="bar", x_label=Non
 
     fig.xgrid.grid_line_color = None
     fig.y_range.start = 0
+
+    hover = HoverTool()
+    hover.tooltips = [
+        (title, f"@{x_param}"),      
+        ("Value", f"@{y_param}{{0.00}}") 
+    ]
+    fig.add_tools(hover)
 
     if x_label:
         fig.xaxis.axis_label=x_label

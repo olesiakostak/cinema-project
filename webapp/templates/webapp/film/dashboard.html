@@ -25,7 +25,17 @@
         <h2>Films Revenue</h2>
         
         <div class="stats-box">
+            <h3>Statistic:</h3>
+            <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
+            <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
+            <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
+            <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
+        </div>
+        
+        <div class="stats-box">
             <form method="get">
+                <input type="hidden" name="chart_type" value="{{ chart_type }}">
+
                 <label>
                     Min Revenue: 
                     <input type="number" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
@@ -40,26 +50,30 @@
             </form>
         </div>
         
-        <div class="stats-box">
-            <h3>Statistic:</h3>
-            <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
-            <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
-            <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
-            <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
-        </div>
-        
         <div>
+            <form method="get">
+                <input type="hidden" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
+                <input type="hidden" name="max_revenue" value="{{ max_revenue_val|default:'' }}">
+
+                <label>Chart Type:
+                    <select name="chart_type" onchange="this.form.submit()">
+                        <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
+                        <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
+                        <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
+                    </select>
+                </label>
+            </form>
+            
             {{ chart_films|safe }}
         </div>
 
         {% if bokeh_div %}
         <div class="report-card">
             <h2>Sold Tickets (Bokeh)</h2>
-            
             {{ bokeh_div|safe }}
-            
             {{ bokeh_script|safe }}
         </div>
         {% endif %}
-    </div> </body>
+    </div> 
+</body>
 </html>

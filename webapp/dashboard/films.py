@@ -6,6 +6,7 @@ def films_analytics(request):
 
     min_revenue = request.GET.get('min_revenue')
     max_revenue = request.GET.get('max_revenue')
+    chart_type = request.GET.get('chart_type', 'bar')
 
     df_films = fetch_data("api/films/performance_report/")
 
@@ -14,13 +15,13 @@ def films_analytics(request):
         stats_films = calculate_stats(df_films, "total_revenue", group_by_col="rating")
 
         html_films = build_plotly_chart(
-            df_films_filtered, 
-            "title", 
-            "total_revenue", 
-            "Film revenue", 
-            "bar", 
-            "Revenue per film", 
-            "Film title")
+            df=df_films_filtered, 
+            x_param="title", 
+            y_param="total_revenue", 
+            title="Film revenue", 
+            chart_type=chart_type, 
+            y_title="Revenue per film", 
+            x_title="Film title")
 
         bokeh_script, bokeh_div = build_bokeh_chart(
                 df_films, 
@@ -36,6 +37,7 @@ def films_analytics(request):
     return render(request, "webapp/film/dashboard.html", {
         "min_revenue_val": min_revenue, 
         "max_revenue_val": max_revenue,
+        "chart_type": chart_type,
         
         "chart_films": html_films,
         "stats_films": stats_films,

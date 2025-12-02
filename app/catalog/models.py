@@ -134,7 +134,7 @@ class Ticket(models.Model):
 class Payment(models.Model):
     customer = models.ForeignKey(Customer, db_column='customer_id', on_delete=models.DO_NOTHING)
     ticket = models.ForeignKey(Ticket, db_column='ticket_id', on_delete=models.DO_NOTHING)
-    gift_certificate = models.ForeignKey(GiftCertificate, db_column='gift_certificate_id', null=True, on_delete=models.DO_NOTHING)
+    gift_certificate = models.ForeignKey(GiftCertificate, db_column='gift_certificate_id', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Status(models.TextChoices):
         SUCCESS = 'success', 'Success',

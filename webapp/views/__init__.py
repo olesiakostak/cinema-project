@@ -8,4 +8,4 @@ from .session import SessionListView, SessionDetailView, SessionCreateView, Sess
 from .ticket import TicketListView, TicketDetailView, TicketCreateView, TicketUpdateView, TicketDeleteView
 from .payment import PaymentListView, PaymentDetailView, PaymentCreateView, PaymentDeleteView, PaymentUpdateView
 from .external_api import ExternalAirportListView
-from .analytics import benchmark_dashboard
+from .analytics import analytics_dashboard

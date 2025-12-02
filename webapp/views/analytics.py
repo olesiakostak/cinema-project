@@ -1,10 +1,10 @@
 from ..bechmarks import get_benchmark_chart
 from django.shortcuts import render
 
-def benchmark_dashboard(request):
-
-    chart_html = get_benchmark_chart()
+def analytics_dashboard(request):
+    chart_benchmark_workers, chart_benchmark_requests = get_benchmark_chart()
 
     return render(request, "webapp/analytics.html", {
-        "chart_benchmark": chart_html
+        "chart_benchmark_workers": chart_benchmark_workers,  
+        "chart_benchmark_requests": chart_benchmark_requests, 
     })

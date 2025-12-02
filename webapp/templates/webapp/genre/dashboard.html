@@ -8,28 +8,6 @@
         h1 { text-align: center; color: #333; }
     </style>
     <title>Genres Analytics</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
-        .report-card { 
-            background: white; 
-            border: 1px solid #ddd; 
-            padding: 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            max-width: 800px; 
-            margin: 0 auto; 
-        }
-        .stats-box { 
-            background-color: #f9f9f9; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border-radius: 5px; 
-            display: flex; 
-            justify-content: space-around; 
-        }
-        .nav-links { text-align: center; margin-top: 20px; }
-        a { text-decoration: none; color: #007bff; font-weight: bold; }
-    </style>
 </head>
 <body>
 
@@ -44,6 +22,18 @@
             <p><strong>Max films in genre:</strong> {{ stats_genres.max|floatformat:0 }}</p>
         </div>
         {% endif %}
+
+        <div>
+            <form method="get">
+                <label>Chart Type:
+                    <select name="chart_type" onchange="this.form.submit()">
+                        <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
+                        <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
+                        <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
+                    </select>
+                </label>
+            </form>
+        </div>
 
         <div>
             {{ chart_genres|safe }}

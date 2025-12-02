@@ -25,7 +25,9 @@ def benchmark_execution(n_requests, max_workers, mode="thread"):
     end_time = time.time()
     return end_time - start_time
 
-def run_experiments(n_requests=100):
+
+
+def run_experiment_with_workers(n_requests=50):
     worker_options = [1, 2, 4, 8]
     results = []
 
@@ -39,21 +41,53 @@ def run_experiments(n_requests=100):
 
     return results
 
+
+def run_experiment_with_requests(workers=4):
+    request_counts = [10, 50, 100, 200, 400]
+
+    results = []
+
+    for n in request_counts:
+        time_thread = benchmark_execution(n, workers, "thread")
+        results.append({"requests": n, "time": time_thread, "type": "Thread"})
+ 
+        time_proc = benchmark_execution(n, workers, "process")
+        results.append({"requests": n, "time": time_proc, "type": "Process"})
+        
+    return results
+
 def get_benchmark_chart():
-    results = run_experiments(n_requests=150) 
+    res_work = run_experiment_with_workers() 
+    df_work = pd.DataFrame(res_work)
     
-    df = pd.DataFrame(results)
-    
-    if not df.empty:
-        fig = px.line(
-            df, 
+    html_work = "<p>Error in Worker Benchmark</p>"
+    if not df_work.empty:  
+        fig1 = px.line(
+            df_work, 
             x="workers", 
             y="time", 
             color="type", 
-            title="Thread vs Process Benchmark",
+            title="Dependence on Workers Count (Threads vs Processes)",
             markers=True 
         )
-        return fig.to_html(full_html=False)
+        html_work = fig1.to_html(full_html=False)
     
-    return "<p>Error</p>"
+   
+    res_req = run_experiment_with_requests()
+    df_req = pd.DataFrame(res_req)
+    
+    html_req = "<p>Error in Request Benchmark</p>"
+    if not df_req.empty:
+        fig2 = px.line(
+            df_req,
+            x="requests",
+            y="time",
+            color="type",
+            title="Dependence on Requests Count",
+            markers=True
+        )
+        html_req = fig2.to_html(full_html=False)
+
+    return html_work, html_req
+
 

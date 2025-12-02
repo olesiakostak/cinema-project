@@ -8,7 +8,6 @@ class CustomerRepository(BaseRepository):
 
     def get_top_customers(self):
         res = self.get_all().filter(
-            payment__operation_type='sale',
             payment__status='success'
             ).annotate(
                 purchases_num=Count('payment'),

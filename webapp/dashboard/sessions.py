@@ -5,6 +5,7 @@ from django.shortcuts import render
 def sessions_analytics(request):
 
     df_sessions = fetch_data("api/sessions/time_report/")
+    chart_type = request.GET.get('chart_type', 'line')
 
     if df_sessions is not None and not df_sessions.empty:
         stats_sessions = calculate_stats(df_sessions, "num_of_sessions")
@@ -14,7 +15,7 @@ def sessions_analytics(request):
             x_param="hour", 
             y_param="num_of_sessions", 
             title="Time report", 
-            chart_type="line",
+            chart_type=chart_type,
             x_title="Hour",
             y_title="Number of sessions"
             )
@@ -37,6 +38,7 @@ def sessions_analytics(request):
     return render(request, "webapp/session/dashboard.html", {
         "chart_sessions": html_sessions,
         "stats_sessions": stats_sessions,
+        "chart_type": chart_type,
 
         "bokeh_script": bokeh_script,
         "bokeh_div": bokeh_div,

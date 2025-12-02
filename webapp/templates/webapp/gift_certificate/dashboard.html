@@ -25,6 +25,18 @@
         {% endif %}
 
         <div>
+            <form method="get">
+                <label>Chart Type:
+                    <select name="chart_type" onchange="this.form.submit()">
+                        <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
+                        <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
+                        <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
+                    </select>
+                </label>
+            </form>
+        </div>
+        
+        <div>
             {{ html_certs|safe }}
         </div>
 
