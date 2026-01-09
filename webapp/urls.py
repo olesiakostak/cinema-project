@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from . import views
 from . import dashboard
 
@@ -6,6 +7,8 @@ app_name = 'webapp'
 
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='webapp/base.html'), name='home-page'),
+
     path('genres/', views.GenreListView.as_view(), name='genre-list'),
     path('genres/<int:pk>/', views.GenreDetailView.as_view(), name='genre-detail'),
     path('genres/add/', views.GenreCreateView.as_view(), name='genre-add'),
