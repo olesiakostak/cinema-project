@@ -1,14 +1,19 @@
-<h1>List of all films</h1>
+{% extends 'webapp/base.html' %}
 
-{% if films %}
-    <ul>
-        {% for film in films %}
-            <li><a href="{% url 'webapp:film-detail' film.id %}">{{ film.title }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>There is no film.</p>
-{% endif %}
+{% block content %}
 
-<hr>
-<a href="{% url 'webapp:film-add' %}">Add new film</a>
+    <h1>List of all films</h1>
+
+    {% if films %}
+        <ul>
+            {% for film in films %}
+                <li><a href="{% url 'webapp:film-detail' film.id %}">{{ film.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There is no film.</p>
+    {% endif %}
+
+    <hr>
+    <a href="{% url 'webapp:film-add' %}">Add new film</a>
+{% endblock %}

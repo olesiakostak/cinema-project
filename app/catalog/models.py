@@ -15,24 +15,13 @@ class Film(models.Model):
     rating  = models.DecimalField(max_digits=3, decimal_places=1)
     release_date = models.DateField()
     description = models.TextField()
-    genres = models.ManyToManyField(Genre, through='FilmGenre')
+    genres = models.ManyToManyField(Genre)
 
     class Meta:
         db_table = 'film'
 
     def __str__(self):
         return self.title
-    
-class FilmGenre(models.Model):
-    film = models.ForeignKey(Film, on_delete=models.CASCADE, db_column='film_id')
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, db_column='genre_id')
-
-    class Meta:
-        db_table = 'film_genre'
-        unique_together = ('film', 'genre')
-
-    def __str__(self):
-        return f'Film: {self.film}, Genre: {self.genre}'
 
 
 class Hall(models.Model):

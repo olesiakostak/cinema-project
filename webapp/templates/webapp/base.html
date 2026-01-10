@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Cinema Project{% endblock %}</title>
+    <title href="{% url 'webapp:home-page' %}">{% block title %}Cinema Project{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -30,7 +30,7 @@
         {% endblock %}
     </div>
 
-    <footer class="bg-body-tertiary text-center py-4 mt-5 border-top">
+    <footer class="bg-dark text-center py-4 mt-5">
         <small class="text-muted">&copy; 2026 Cinema Project</small>
     </footer>
 
