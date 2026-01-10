@@ -1,3 +1,7 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>Delete genre</h1>
 <p>Confirm that you want to delete genre: <strong>{{ object.name }}</strong></p>
 
@@ -7,3 +11,5 @@
 </form>
 
 <a href="{% url 'webapp:genre-detail' object.id %}">Return to the genre</a> 
+
+{% endblock %}

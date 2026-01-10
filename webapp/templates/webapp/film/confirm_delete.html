@@ -1,3 +1,7 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>Delete film</h1>
 <p>Confirm that you want to delete film: <strong>{{ object.title }}</strong></p>
 
@@ -7,3 +11,4 @@
 </form>
 
 <a href="{% url 'webapp:film-detail' object.id %}">Return to the film</a> 
+{% endblock %}

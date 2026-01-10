@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all genres</h1>
+<a href="{% url 'webapp:genre-add' %}" class="btn btn-success"> + Add New Genre </a>
+<hr>
 
 {% if genres %}
     <ul>
@@ -10,5 +16,5 @@
     <p>No genre was entered.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:genre-add' %}">Add new genre</a>
+
+{% endblock %}

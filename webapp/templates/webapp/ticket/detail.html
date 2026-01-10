@@ -1,5 +1,7 @@
-<h1>Ticket Details</h1>
-<hr>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <p><strong>Session:</strong> {{ ticket.session }}</p>
 <p><strong>Seat:</strong> {{ ticket.seat }}</p>
 <p><strong>Base Price:</strong> {{ ticket.base_price }}</p>
@@ -11,3 +13,5 @@
 <a href="{% url 'webapp:ticket-delete' ticket.id %}">Delete this ticket</a>
 <hr>
 <a href="{% url 'webapp:ticket-list' %}">Return to the list of tickets</a>
+
+{% endblock %}

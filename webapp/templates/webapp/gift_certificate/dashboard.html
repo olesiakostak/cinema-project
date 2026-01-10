@@ -1,54 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'webapp/base.html' %}
+
+{% block content %}
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
-    <title>Gift Certificates Analytics</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-    </style>
-</head>
-<body>
 
-    <h1>Gift Certificates Analytics</h1>
+    <div class="card border-primary p-4 mb-4">
 
-    <div class="report-card">
-        <h2>Gift-Certificates Usage</h2>
-        
+        <h2 class="text-center mb-4">Gift Certificates Analytics</h2>
+
         {% if stats_certs and stats_certs.mean %}
-        <div class="stats-box">
-            <p><strong>Average Usage:</strong> {{ stats_certs.mean|floatformat:1 }}</p>
-            <p><strong>Min Usage:</strong> {{ stats_certs.min|floatformat:0 }}</p>
-            <p><strong>Max Usage:</strong> {{ stats_certs.max|floatformat:0 }}</p>
+        <div class="card bg-secondary mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Gift-Certificates Usage:</h4>
+                <p><strong>Average Usage:</strong> {{ stats_certs.mean|floatformat:1 }}</p>
+                <p><strong>Min Usage:</strong> {{ stats_certs.min|floatformat:0 }}</p>
+                <p><strong>Max Usage:</strong> {{ stats_certs.max|floatformat:0 }}</p>
+            </div>
         </div>
         {% endif %}
 
-        <div>
-            <form method="get">
-                <label>Chart Type:
-                    <select name="chart_type" onchange="this.form.submit()">
-                        <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
-                        <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
-                        <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
-                    </select>
-                </label>
+        <div class="mb-4 text-center">
+            <form method="get" class="mb-3">
+                <label class="me-2">Chart Type:</label>
+                <select name="chart_type" class="form-select d-inline-block w-auto" onchange="this.form.submit()">
+                    <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
+                    <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
+                    <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
+                </select>
             </form>
-        </div>
-        
-        <div>
+
             {{ html_certs|safe }}
         </div>
 
         {% if bokeh_div %}
-        <div class="report-card">
-            <h2>Sold Tickets (Bokeh)</h2>
-            
+        <div class="card border-info p-3">
+            <h2 class="text-center">Sold Tickets (Bokeh)</h2>
             {{ bokeh_div|safe }}
-            
             {{ bokeh_script|safe }}
         </div>
         {% endif %}
+
     </div>
-</body>
-</html>
+{% endblock %}

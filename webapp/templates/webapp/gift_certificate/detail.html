@@ -1,4 +1,7 @@
-<h1>Certificate details:</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h2>Code: {{ certificate.code }}</h2>
 <p><strong>Balance:</strong> {{ certificate.balance }}</p>
 <p><strong>Expiration date:</strong> {{ certificate.expiration_date }}</p>
@@ -8,3 +11,5 @@
 <a href="{% url 'webapp:gift-certificate-delete' certificate.id %}">Delete</a>
 <hr>
 <a href="{% url 'webapp:gift-certificate-list' %}">Return to the list</a>
+
+{% endblock %}

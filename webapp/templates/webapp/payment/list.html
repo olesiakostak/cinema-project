@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all Payments</h1>
+<a href="{% url 'webapp:payment-add' %}" class="btn btn-success">+ Add New Payment</a>
+<hr>
 
 {% if payments %}
     <ul>
@@ -10,5 +16,5 @@
     <p>No payments have been made yet.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:payment-add' %}">Add new payment</a>
+
+{% endblock %}

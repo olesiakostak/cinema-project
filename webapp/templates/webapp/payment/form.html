@@ -1,4 +1,8 @@
-<h1>{% if object %}Edit Payment{% else %}Add new Payment{% endif %}</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+<h2>{% if object %}Edit Payment{% else %}Add new Payment{% endif %}</h2>
 
 <form method="post">
     {% csrf_token %}
@@ -8,3 +12,5 @@
 
 <hr>
 <a href="{% url 'webapp:payment-list' %}">Return to the list</a>
+
+{% endblock %}

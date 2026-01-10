@@ -1,38 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'webapp/base.html' %}
+
+{% block content %}
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
-    <title>Customer Analytics</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-    </style>
-</head>
-<body>
 
-    <h1>Top Clients Analytics</h1>
+    <div class="card border-primary p-4 mb-4">
 
-    <div class="report-card">
-        <h2>Customer Spending</h2>
-        
-        <form method="get" class="filter-form">
-            <label>
-                Min Spend: 
-                <input type="number" name="min_spend" value="{{ request.GET.min_spend|default:'' }}">
-            </label>
-            
-            <label>
-                Max Spend: 
-                <input type="number" name="max_spend" value="{{ request.GET.max_spend|default:'' }}">
-            </label>
-            
-            <button type="submit">Filter Clients</button>
-        </form>
+        <h2 class="text-center mb-4">Top Clients Analytics</h2>
+
+        <div class="card bg-secondary mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Filter by Spending:</h4>
+                <form method="get">
+                    <label class="me-2">Min Spend:</label>
+                    <input type="number" class="form-control d-inline-block w-auto me-3" name="min_spend" value="{{ request.GET.min_spend|default:'' }}">
+                    
+                    <label class="me-2">Max Spend:</label>
+                    <input type="number" class="form-control d-inline-block w-auto me-3" name="max_spend" value="{{ request.GET.max_spend|default:'' }}">
+                    
+                    <button type="submit" class="btn btn-primary">Filter Clients</button>
+                </form>
+            </div>
+        </div>
 
         {% if stats_customers and stats_customers.mean %}
-        <div class="stats-box">
-            <div class="stats-grid">
+        <div class="card bg-secondary mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Customer Spending Stats:</h4>
                 <p><strong>Average Spend:</strong> {{ stats_customers.mean|floatformat:2 }}</p>
                 <p><strong>Min Spend:</strong> {{ stats_customers.min|floatformat:2 }}</p>
                 <p><strong>Max Spend:</strong> {{ stats_customers.max|floatformat:2 }}</p>
@@ -41,19 +34,17 @@
         </div>
         {% endif %}
 
-        <div>
+        <div class="mb-4 text-center">
             {{ html_customers|safe }}
         </div>
+
         {% if bokeh_div %}
-        <div class="report-card">
-            <h2>Sold Tickets (Bokeh)</h2>
-            
+        <div class="card border-info p-3">
+            <h2 class="text-center">Sold Tickets (Bokeh)</h2>
             {{ bokeh_div|safe }}
-            
             {{ bokeh_script|safe }}
         </div>
         {% endif %}
-    </div>
 
-</body>
-</html>
+    </div>
+{% endblock %}

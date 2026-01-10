@@ -1,7 +1,13 @@
-<h1>{% if object %}Edit Film{% else %}Add new Film{% endif %}</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+<h2>{% if object %}Edit Film{% else %}Add new Film{% endif %}</h2>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
+
+{% endblock %}

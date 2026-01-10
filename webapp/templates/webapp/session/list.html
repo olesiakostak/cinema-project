@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all Sessions</h1>
+<a href="{% url 'webapp:session-add' %}" class="btn btn-success">+ Add New Session</a>
+<hr>
 
 {% if sessions %}
     <ul>
@@ -10,5 +16,5 @@
     <p>No sessions have been scheduled yet.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:session-add' %}">Add new session</a>
+
+{% endblock %}

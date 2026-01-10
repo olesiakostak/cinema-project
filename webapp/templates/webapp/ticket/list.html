@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all Tickets</h1>
+<a href="{% url 'webapp:ticket-add' %}" class="btn btn-success">+ Add New Ticket</a>
+<hr>
 
 {% if tickets %}
     <ul>
@@ -10,5 +16,4 @@
     <p>No tickets have been created yet.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:ticket-add' %}">Add new ticket</a>
+{% endblock %}

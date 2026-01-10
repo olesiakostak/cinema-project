@@ -1,5 +1,7 @@
-<h1>Payment Details</h1>
-<hr>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <p><strong>Customer:</strong> {{ payment.customer }}</p>
 <p><strong>Ticket:</strong> {{ payment.ticket }}</p>
 <p><strong>Gift Certificate:</strong> {{ payment.gift_certificate|default:"N/A" }}</p>
@@ -12,3 +14,5 @@
 <a href="{% url 'webapp:payment-delete' payment.id %}">Delete this payment</a>
 <hr>
 <a href="{% url 'webapp:payment-list' %}">Return to the list of payments</a>
+
+{% endblock %}

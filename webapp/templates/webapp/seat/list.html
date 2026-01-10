@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all Seats</h1>
+<a href="{% url 'webapp:seat-add' %}" class="btn btn-success">+ Add New Seat</a>
+<hr>
 
 {% if seats %}
     <ul>
@@ -10,5 +16,4 @@
     <p>No seats have been added yet.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:seat-add' %}">Add new seat</a>
+{% endblock %}

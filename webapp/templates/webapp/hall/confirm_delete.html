@@ -1,3 +1,7 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>Delete hall</h1>
 <p>Confirm that you want to delete hall: <strong>{{ object.name }}</strong></p>
 
@@ -7,3 +11,5 @@
 </form>
 
 <a href="{% url 'webapp:hall-detail' object.id %}">Return to the hall</a> 
+
+{% endblock %}

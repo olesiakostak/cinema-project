@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all customers</h1>
+<a href="{% url 'webapp:customer-add' %}" class="btn btn-success">+ Add New Customer</a>
+<hr>
 
 {% if customers %}
     <ul>
@@ -10,5 +16,5 @@
     <p>No customer was entered.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:customer-add' %}">Add new customer</a>
+
+{% endblock %}

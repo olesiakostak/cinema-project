@@ -1,4 +1,7 @@
-<h1>Seat Details</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h2>Hall: {{ seat.hall }}</h2> 
 <hr>
 <p><strong>Row:</strong> {{ seat.row }}</p>
@@ -9,3 +12,5 @@
 <a href="{% url 'webapp:seat-delete' seat.id %}">Delete this seat</a>
 <hr>
 <a href="{% url 'webapp:seat-list' %}">Return to the list of seats</a>
+
+{% endblock %}

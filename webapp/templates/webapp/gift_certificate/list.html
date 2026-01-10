@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>Lift of all certificates</h1>
+<a href="{% url 'webapp:gift-certificate-add' %}" class="btn btn-success">+ Add New Gift-Certificate</a>
+<hr>
 
 {% if certificates %}
     <ul>
@@ -10,5 +16,4 @@
     <p>No certificate was entered.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:gift-certificate-add' %}">Add certificate</a>
+{% endblock %}

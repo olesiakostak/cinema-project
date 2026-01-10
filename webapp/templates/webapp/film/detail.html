@@ -1,4 +1,7 @@
-<h1>Film detail</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h2>{{ film.title  }}</h2>
 
 <p><strong>Duration:</strong> {{ film.duration }}</p>
@@ -9,13 +12,15 @@
 <ul>
     {% for genre in film.genres.all %}
         <li>{{ genre.name }}</li>
-    {% empty %}
+        {% empty %}
         <li>Genres were not entered</li>
-    {% endfor %}
-</ul>
-<hr>
-<a href="{% url 'webapp:film-update' film.id %}">Update film</a>
-<hr>
-<a href="{% url 'webapp:film-delete' film.id %}">Delete film</a>
+        {% endfor %}
+    </ul>
+    <hr>
+    <a href="{% url 'webapp:film-update' film.id %}">Update film</a>
+    <hr>
+    <a href="{% url 'webapp:film-delete' film.id %}">Delete film</a>
 <hr>
 <a href="{% url 'webapp:film-list' %}">Return to the list</a>
+
+{% endblock %}

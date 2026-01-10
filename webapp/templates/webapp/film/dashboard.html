@@ -1,79 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cinema Analytics Dashboard</title>
-    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
-    <style>
-        .report-card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .stats-box {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
-    <div class="report-card">
-        <h2>Films Revenue</h2>
-        
-        <div class="stats-box">
-            <h3>Statistic:</h3>
-            <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
-            <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
-            <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
-            <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
-        </div>
-        
-        <div class="stats-box">
-            <form method="get">
-                <input type="hidden" name="chart_type" value="{{ chart_type }}">
+{% extends 'webapp/base.html' %}
 
-                <label>
-                    Min Revenue: 
-                    <input type="number" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
-                </label>
-                
-                <label style="margin-left: 10px;">
-                    Max Revenue: 
-                    <input type="number" name="max_revenue" value="{{ max_revenue_val|default:'' }}">
-                </label>
-                
-                <button type="submit" style="margin-left: 10px;">Filter</button>
-            </form>
+{% block content %}
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.1.min.js"></script>
+
+    <div class="card border-primary p-4 mb-4">
+        
+        <h2 class="text-center mb-4">Films Revenue</h2>
+        
+        <div class="card bg-secondary mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Statistic:</h4>
+                <p><strong>Average:</strong> {{ stats_films.mean|floatformat:2 }}</p>
+                <p><strong>Min:</strong> {{ stats_films.min|floatformat:2 }}</p>
+                <p><strong>Max:</strong> {{ stats_films.max|floatformat:2 }}</p>
+                <p><strong>Median:</strong> {{ stats_films.median|floatformat:2 }}</p>
+            </div>
         </div>
         
-        <div>
-            <form method="get">
+        <div class="card bg-secondary mb-4">
+            <div class="card-body">
+                <form method="get">
+                    <input type="hidden" name="chart_type" value="{{ chart_type }}">
+
+                    <label class="form-label me-2">Min Revenue:</label>
+                    <input type="number" class="form-control d-inline-block w-auto me-3" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
+                    
+                    <label class="form-label me-2">Max Revenue:</label>
+                    <input type="number" class="form-control d-inline-block w-auto me-3" name="max_revenue" value="{{ max_revenue_val|default:'' }}">
+                    
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mb-4 text-center">
+            <form method="get" class="mb-3">
                 <input type="hidden" name="min_revenue" value="{{ min_revenue_val|default:'' }}">
                 <input type="hidden" name="max_revenue" value="{{ max_revenue_val|default:'' }}">
 
-                <label>Chart Type:
-                    <select name="chart_type" onchange="this.form.submit()">
-                        <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
-                        <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
-                        <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
-                    </select>
-                </label>
+                <label class="me-2">Chart Type:</label>
+                <select name="chart_type" class="form-select d-inline-block w-auto" onchange="this.form.submit()">
+                    <option value="bar" {% if chart_type == 'bar' %}selected{% endif %}>Bar Chart</option>
+                    <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line Chart</option>
+                    <option value="pie" {% if chart_type == 'pie' %}selected{% endif %}>Pie Chart</option>
+                </select>
             </form>
             
             {{ chart_films|safe }}
         </div>
 
         {% if bokeh_div %}
-        <div class="report-card">
-            <h2>Sold Tickets (Bokeh)</h2>
+        <div class="card border-info p-3">
+            <h2 class="text-center">Sold Tickets (Bokeh)</h2>
             {{ bokeh_div|safe }}
             {{ bokeh_script|safe }}
         </div>
         {% endif %}
+        
     </div> 
-</body>
-</html>
+{% endblock %}

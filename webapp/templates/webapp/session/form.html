@@ -1,4 +1,8 @@
-<h1>{% if object %}Edit Session{% else %}Add new Session{% endif %}</h1>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+<h2>{% if object %}Edit Session{% else %}Add new Session{% endif %}</h2>
 
 <form method="post">
     {% csrf_token %}
@@ -8,3 +12,5 @@
 
 <hr>
 <a href="{% url 'webapp:session-list' %}">Return to the list</a>
+
+{% endblock %}

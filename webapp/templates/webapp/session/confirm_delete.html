@@ -1,3 +1,7 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>Delete Session</h1>
 <p>Are you sure you want to delete this session: <strong>{{ object }}</strong>?</p>
 
@@ -8,3 +12,5 @@
 
 <hr>
 <a href="{% url 'webapp:session-detail' object.id %}">No, return to details</a>
+
+{% endblock %}

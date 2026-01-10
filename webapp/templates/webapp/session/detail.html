@@ -1,5 +1,7 @@
-<h1>Session Details</h1>
-<hr>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <p><strong>Film:</strong> {{ session.film }}</p>
 <p><strong>Hall:</strong> {{ session.hall }}</p>
 <p><strong>Start Time:</strong> {{ session.start_time }}</p>
@@ -11,3 +13,5 @@
 <a href="{% url 'webapp:session-delete' session.id %}">Delete this session</a>
 <hr>
 <a href="{% url 'webapp:session-list' %}">Return to the list of sessions</a>
+
+{% endblock %}

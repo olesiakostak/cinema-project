@@ -1,4 +1,10 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
 <h1>List of all halls</h1>
+<a href="{% url 'webapp:hall-add' %}" class="btn btn-success">+ Add New Hall</a>
+<hr>
 
 {% if halls %}
     <ul>
@@ -10,5 +16,4 @@
     <p>No hall was entered.</p>
 {% endif %}
 
-<hr>
-<a href="{% url 'webapp:hall-add' %}">Add new hall</a>
+{% endblock %}

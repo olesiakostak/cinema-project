@@ -1,9 +1,9 @@
 {% extends 'webapp/base.html' %}
 
 {% block content %}
-
     <h1>List of all films</h1>
-
+    <a href="{% url 'webapp:film-add' %}" class="btn btn-success">+ Add New Film</a>
+    <hr>
     {% if films %}
         <ul>
             {% for film in films %}
@@ -14,6 +14,4 @@
         <p>There is no film.</p>
     {% endif %}
 
-    <hr>
-    <a href="{% url 'webapp:film-add' %}">Add new film</a>
 {% endblock %}

@@ -2,26 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title href="{% url 'webapp:home-page' %}">{% block title %}Cinema Project{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#"> Cinema Project</a>
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'webapp:film-list' %}">Films</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'webapp:session-list' %}">Sessions</a>
-                    </li>
-                </ul>
-            </div>
+            <a class="navbar-brand" href="{% url 'webapp:home-page' %}"> Cinema Project</a>
         </div>
     </nav>
 
