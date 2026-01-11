@@ -4,7 +4,7 @@ from .hall import HallListView, HallDetailView, HallCreateView, HallUpdateView, 
 from .customer import CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView
 from .gift_certificate import GiftCertificateListView, GiftCertificateDetailView, GiftCertificateCreateView, GiftCertificateUpdateView, GiftCertificateDeleteView
 from .seat import SeatListView, SeatDetailView, SeatCreateView, SeatUpdateView, SeatDeleteView
-from .session import SessionListView, SessionDetailView, SessionCreateView, SessionUpdateView, SessionDeleteView, BookingView, BookingDetailView
+from .session import SessionListView, SessionDetailView, SessionCreateView, SessionUpdateView, SessionDeleteView, BookingView, BookingDetailView, CreateBooking
 from .ticket import TicketListView, TicketDetailView, TicketCreateView, TicketUpdateView, TicketDeleteView
 from .payment import PaymentListView, PaymentDetailView, PaymentCreateView, PaymentDeleteView, PaymentUpdateView
 from .external_api import ExternalAirportListView

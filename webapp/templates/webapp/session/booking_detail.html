@@ -31,7 +31,7 @@
                                 {{ seat.seat }}
                             </button>
                         {% else %}
-                            <a href="{% url 'webapp:ticket-detail' session.id %}"  class="btn btn-outline-primary btn-sm m-1" style="width: 35px;">
+                            <a href="{% url 'webapp:booking-create' session.id seat.id %}"  class="btn btn-outline-primary btn-sm m-1" style="width: 35px;">
                                 {{ seat.seat }}
                             </a>
                         {% endif %}
