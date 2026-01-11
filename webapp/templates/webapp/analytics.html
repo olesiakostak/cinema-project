@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Analytics</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-    </style>
-</head>
-<body>
+{% extends 'webapp/base.html' %}
 
-    <h1>Benchmark</h1>
+{% block content %}
 
-    <div class="report-card">
-        <h2>Benchmark: Workers</h2>
-        <div>
-            {{ chart_benchmark_workers|safe }}
+    <div class="card border-primary p-4 mb-4">
+        
+        <h1 class="text-center mb-4">Benchmark Results</h1>
+
+        <div class="card border-secondary mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">Benchmark: Workers</h4>
+            </div>
+            <div class="card-body text-center overflow-auto">
+                {{ chart_benchmark_workers|safe }}
+            </div>
         </div>
+
+        <div class="card border-secondary mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">Benchmark: Load (Requests)</h4>
+            </div>
+            <div class="card-body text-center overflow-auto">
+                {{ chart_benchmark_requests|safe }}
+            </div>
+        </div>
+
     </div>
 
-    <div class="report-card">
-        <h2>Benchmark: Load (Requests)</h2>
-        <div>
-            {{ chart_benchmark_requests|safe }}
-        </div>
-    </div>
-
-</body>
-</html>
+{% endblock %}

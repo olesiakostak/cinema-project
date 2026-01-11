@@ -28,7 +28,7 @@ def benchmark_execution(n_requests, max_workers, mode="thread"):
 
 
 def run_experiment_with_workers(n_requests=50):
-    worker_options = [1, 2, 4, 8]
+    worker_options = [1, 5, 10, 15, 20]
     results = []
 
     for w in worker_options:
@@ -43,7 +43,7 @@ def run_experiment_with_workers(n_requests=50):
 
 
 def run_experiment_with_requests(workers=4):
-    request_counts = [10, 50, 100, 200, 400]
+    request_counts = [10, 50, 100, 200, 400, 600, 800]
 
     results = []
 
