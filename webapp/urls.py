@@ -71,6 +71,8 @@ urlpatterns = [
     path('payments/delete/<int:pk>/', views.PaymentDeleteView.as_view(), name='payment-delete'),
 
     path('external/airports/', views.ExternalAirportListView.as_view(), name='external-airport-list'),
-    path('analytics/benchmark/', views.analytics_dashboard, name='benchmark')
+    path('analytics/benchmark/', views.analytics_dashboard, name='benchmark'),
 
+    path('booking/', views.BookingView.as_view(), name='booking-list'),
+    path('booking/<int:pk>/', views.BookingDetailView.as_view(), name='booking-detail'),
 ]

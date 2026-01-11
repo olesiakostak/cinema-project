@@ -1,0 +1,50 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+<div class="card border-primary p-4 mb-4">
+    
+    <div class="text-center mb-4">
+        <h2>{{ session.film.title }}</h2>
+        <h5 class="text-muted">
+            {{ session.hall.name }} | {{ session.start_time|date:"d M Y, H:i" }}
+        </h5>
+        <p>Price: ${{ session.price|default:"10.00" }}</p>
+    </div>
+
+    <div class="d-flex justify-content-center mb-4 gap-3">
+        <div><span class="badge bg-success">&nbsp;&nbsp;</span> Available</div>
+        <div><span class="badge bg-danger">&nbsp;&nbsp;</span> Booked</div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center">
+        
+        <div class="bg-secondary text-white text-center w-50 mb-4 rounded">
+            <small>SCREEN</small>
+        </div>
+
+        {% regroup all_seats by row as seat_rows %}
+
+        {% for row in seat_rows %}
+            <div class="d-flex justify-content-center mb-2 align-items-center">
+                
+                <div class="me-3 text-muted fw-bold">Row {{ row.grouper }}</div>
+
+                {% for seat in row.list %}
+                    
+                    {% if seat.id in booked_tickets %}
+                        <button class="btn btn-danger btn-sm m-1" disabled style="width: 40px;">
+                            {{ seat.seat }}
+                        </button>
+                    {% else %}
+                        <a href="#" class="btn btn-success btn-sm m-1" style="width: 40px;">
+                            {{ seat.seat }}
+                        </a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
