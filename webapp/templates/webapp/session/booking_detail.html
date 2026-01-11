@@ -1,47 +1,42 @@
 {% extends 'webapp/base.html' %}
 
 {% block content %}
-<div class="card border-primary p-4 mb-4">
-    
-    <div class="text-center mb-4">
-        <h2>{{ session.film.title }}</h2>
-        <h5 class="text-muted">
-            {{ session.hall.name }} | {{ session.start_time|date:"d M Y, H:i" }}
-        </h5>
-        <p>Price: ${{ session.price|default:"10.00" }}</p>
-    </div>
+<div class="container text-center mt-4">
 
-    <div class="d-flex justify-content-center mb-4 gap-3">
-        <div><span class="badge bg-success">&nbsp;&nbsp;</span> Available</div>
-        <div><span class="badge bg-danger">&nbsp;&nbsp;</span> Booked</div>
-    </div>
+    <h2 class="mb-0">{{ session.film.title }}</h2>
+    <p class="text-muted">
+        {{ session.start_time|date:"H:i" }} | {{ session.hall.name }}
+    </p>
 
-    <div class="d-flex flex-column align-items-center">
-        
-        <div class="bg-secondary text-white text-center w-50 mb-4 rounded">
-            <small>SCREEN</small>
+    <div class="mb-4">
+        <div class="bg-primary border rounded p-1 mx-auto" style="max-width: 300px;">
+            <small class="text-muted">SCREEN</small>
         </div>
+    </div>
 
+    <div class="d-inline-block">
         {% regroup all_seats by row as seat_rows %}
-
+        
         {% for row in seat_rows %}
-            <div class="d-flex justify-content-center mb-2 align-items-center">
+            <div class="d-flex align-items-center justify-content-center mb-1">
                 
-                <div class="me-3 text-muted fw-bold">Row {{ row.grouper }}</div>
+                <div class="me-3 text-muted small" style="width: 50px; text-align: right;">
+                    Row {{ row.grouper }}
+                </div>
 
-                {% for seat in row.list %}
-                    
-                    {% if seat.id in booked_tickets %}
-                        <button class="btn btn-danger btn-sm m-1" disabled style="width: 40px;">
-                            {{ seat.seat }}
-                        </button>
-                    {% else %}
-                        <a href="#" class="btn btn-success btn-sm m-1" style="width: 40px;">
-                            {{ seat.seat }}
-                        </a>
-                    {% endif %}
-
-                {% endfor %}
+                <div>
+                    {% for seat in row.list %}
+                        {% if seat.id in booked_tickets %}
+                             <button class="btn btn-danger btn-sm m-1" style="width: 35px;" disabled>
+                                {{ seat.seat }}
+                            </button>
+                        {% else %}
+                            <a href="{% url 'webapp:ticket-detail' session.id %}"  class="btn btn-outline-primary btn-sm m-1" style="width: 35px;">
+                                {{ seat.seat }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         {% endfor %}
     </div>

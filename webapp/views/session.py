@@ -3,6 +3,7 @@ from app.catalog.repositories import unit_of_work
 from django.urls import reverse_lazy
 from app.catalog.models import Session, Seat, Ticket
 from ..forms import SessionForm
+from django.utils import timezone
 
 class SessionListView(ListView):
     template_name = 'webapp/session/list.html'
@@ -40,7 +41,9 @@ class BookingView(ListView):
     context_object_name = 'sessions'
 
     def get_queryset(self):
-        return unit_of_work.sessions.get_all()
+        return unit_of_work.sessions.get_all().filter(
+            start_time__gt=timezone.now()
+        )
 
 class BookingDetailView(DetailView):
     model = Session

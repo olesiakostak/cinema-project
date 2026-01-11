@@ -2,17 +2,35 @@
 
 {% block content %}
 
-<h1>List of all Sessions</h1>
+<div class="container mt-4" style="max-width: 600px;">
+    
+    <h1 class="text-center mb-4">Available Sessions</h1>
 
-{% if sessions %}
-    <ul>
-        {% for session in sessions %}
-            <li><a href="{% url 'webapp:booking-detail' session.id %}">{{ session }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No sessions have been scheduled yet.</p>
-{% endif %}
+    {% if sessions %}
+        <div class="list-group shadow-sm">
+            {% for session in sessions %}
+                <a href="{% url 'webapp:booking-detail' session.id %}" 
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3">
+                    
+                    <div>
+                        <h5 class="mb-1 fw-bold">{{ session.film.title }}</h5>
+                        <small class="text-muted">
+                            {{ session.hall.name }}
+                        </small>
+                    </div>
 
+                    <span class="badge bg-primary rounded-pill" style="font-size: 1em;">
+                        {{ session.start_time }}
+                    </span>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            No sessions have been scheduled yet.
+        </div>
+    {% endif %}
+
+</div>
 
 {% endblock %}

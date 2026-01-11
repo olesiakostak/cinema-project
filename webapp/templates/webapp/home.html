@@ -36,6 +36,17 @@
     <div class="col-md-4 mb-4">
         <div class="card border-primary h-200">
             <div class="card-body">
+                <h4 class="card-title">Explore the Sessions</h4>
+                <div class="d-flex gap-2 mt-3">
+                <a href="{% url 'webapp:session-list' %}" class="btn btn-primary flex-grow-2">List</a>
+                <a href="{% url 'webapp:session-analytics' %}" class="btn btn-primary flex-grow-2">Analytics</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card border-primary h-200">
+            <div class="card-body">
                 <h4 class="card-title">Explore the Genres</h4>
                 <div class="d-flex gap-2 mt-3">
                 <a href="{% url 'webapp:genre-list' %}" class="btn btn-primary flex-grow-2">List</a>
@@ -82,17 +93,6 @@
                 <h4 class="card-title">Explore the Seats</h4>
                 <div class="d-flex gap-2 mt-3">
                 <a href="{% url 'webapp:seat-list' %}" class="btn btn-primary flex-grow-2">List</a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-4">
-        <div class="card border-primary h-200">
-            <div class="card-body">
-                <h4 class="card-title">Explore the Sessions</h4>
-                <div class="d-flex gap-2 mt-3">
-                <a href="{% url 'webapp:session-list' %}" class="btn btn-primary flex-grow-2">List</a>
-                <a href="{% url 'webapp:session-analytics' %}" class="btn btn-primary flex-grow-2">Analytics</a>
             </div>
             </div>
         </div>
