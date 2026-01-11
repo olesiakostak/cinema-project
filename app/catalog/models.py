@@ -71,6 +71,7 @@ class Seat(models.Model):
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE, db_column='hall_id')
     row = models.IntegerField(db_column='row_num')
     seat = models.IntegerField(db_column='seat_num')
+    base_price = models.DecimalField(max_digits=9, decimal_places=2, default=100.00)
     
     class Meta:
         unique_together = ('hall', 'row', 'seat')
@@ -85,6 +86,7 @@ class Session(models.Model):
     hall = models.ForeignKey(Hall, db_column='hall_id', on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Status(models.TextChoices):
         SCHEDULED = 'scheduled', 'Scheduled'

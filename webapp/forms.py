@@ -20,7 +20,7 @@ class GiftCertificateForm(forms.ModelForm):
 class SessionForm(forms.ModelForm):
     class Meta:
         model = Session
-        fields = ['film', 'hall', 'start_time', 'end_time', 'status']
+        fields = ['film', 'hall', 'start_time', 'end_time', 'price', 'status']
         widgets = {
             'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),

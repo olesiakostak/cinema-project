@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from app.catalog.repositories import unit_of_work
 from django.urls import reverse_lazy
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from app.catalog.models import Session, Seat, Ticket
 from ..forms import SessionForm
 from django.utils import timezone
@@ -62,18 +62,19 @@ class BookingDetailView(DetailView):
         return context
     
 def CreateBooking(request, session_id, seat_id):
-
     session = get_object_or_404(Session, pk=session_id)
     seat = get_object_or_404(Seat, pk=seat_id)
 
     if Ticket.objects.filter(session=session, seat=seat).exists():
         return redirect('webapp:booking-detail', pk=session_id)
 
-    new_ticket = Ticket.objects.create(
-        session=session,
-        seat=seat,
-        status=Ticket.Status.BOOKED,
-        base_price=150.00  
-    )
+    if request.method == 'POST':
+        new_ticket = Ticket.objects.create(
+            session=session,
+            seat=seat,
+            status=Ticket.Status.BOOKED,
+            base_price=session.price 
+        )
+        return redirect('webapp:ticket-detail', pk=new_ticket.id)
 
-    return redirect('webapp:ticket-detail', pk=new_ticket.id)
+    return render(request, 'webapp/session/confirm_create.html', {'object': session, 'seat': seat})

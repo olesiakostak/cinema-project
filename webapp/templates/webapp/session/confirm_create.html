@@ -1,0 +1,15 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+<h1>Confirm Booking</h1>
+
+<form method='post'>
+    {% csrf_token %}
+    <button type='submit'>Yes, confirm</button>
+</form>
+
+<hr>
+<a href="{% url 'webapp:booking-detail' object.id %}">No, return to the previous page</a>
+
+{% endblock %}
